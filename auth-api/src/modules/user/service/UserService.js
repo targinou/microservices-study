@@ -40,6 +40,28 @@ class UserService {
             throw new Error(httpStatus.BAD_REQUEST, "Usuário não foi informado!")
         }
     }
+
+    async getAccessToken(){
+        try {
+            const {email, password} = req.body;
+            this.validateAccessTokenData(email, password);
+            let;
+        }   catch (err) {
+                return {
+                    status: error.status ? error.status : httpStatus.INTERNAL_SERVER_ERROR,
+                    message: err.message,
+                };
+            }
+    }
+
+    validateAccessTokenData(email, password) {
+        if(!email || !password) {
+            throw new UserException (
+                httpStatus.UNAUTHORIZED,
+                "Email and password must be informed."
+            )
+        }
+    }
 }
 
 export default new UserService;
