@@ -1,6 +1,6 @@
 import Sequelize from "sequelize";
 
-const sequelize = new Sequelize("auth-db", "postgres", "123456", {
+const sequelize = new Sequelize("auth-db", "admin", "123456", {
     host: "localhost",
     dialect: "postgres",
     quoteIdentifiers: false,
@@ -11,7 +11,7 @@ const sequelize = new Sequelize("auth-db", "postgres", "123456", {
         undescoredAll: true,
         freezeTableName: true,
     },
-});
+}); 
 
 sequelize.authenticate().then(() => {
     console.info("A conexão foi estabelecida!");
