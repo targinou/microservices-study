@@ -1,7 +1,5 @@
 package br.com.curso.productapi.modules.supplier.model;
 
-import br.com.curso.productapi.modules.category.dto.CategoryRequest;
-import br.com.curso.productapi.modules.category.model.Category;
 import br.com.curso.productapi.modules.supplier.dto.SupplierRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
