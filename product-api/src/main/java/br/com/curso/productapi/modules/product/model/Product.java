@@ -37,7 +37,7 @@ public class Product {
     @Column(name = "QUANTITY_AVAILABLE", nullable = false)
     private Integer quantityAvailable;
 
-    @Column(name = "CREAED_AT", nullable = false, updatable = false)
+    @Column(name = "CREATED_AT", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist

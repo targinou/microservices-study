@@ -10,6 +10,9 @@ import br.com.curso.productapi.modules.supplier.service.SupplierService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.springframework.util.ObjectUtils.isEmpty;
 
 
@@ -24,6 +27,38 @@ public class ProductService {
     private SupplierService supplierService;
     @Autowired
     private CategoryService categoryService;
+
+    public ProductResponse findByIdResponse(Integer id){
+        return ProductResponse.of(findById(id));
+    }
+
+    public List<ProductResponse> findAll(){
+        return productRepository
+                .findAll()
+                .stream()
+                .map(ProductResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public List<ProductResponse> findByName(String name){
+        if(isEmpty(name)){
+            throw new ValidationException("The product name must be informed.");
+        }
+        return productRepository
+                .findByNameIgnoreCaseContaining(name)
+                .stream()
+                .map(ProductResponse::of)
+                .collect(Collectors.toList());
+    }
+
+    public Product findById(Integer id){
+        if(isEmpty(id)){
+            throw new ValidationException("The product ID was not informed");
+        }
+        return productRepository
+                .findById(id)
+                .orElseThrow(() -> new ValidationException("There's no product for the given ID."));
+    }
 
     public ProductResponse save(ProductRequest request){
         validateProductDataInformed(request);
