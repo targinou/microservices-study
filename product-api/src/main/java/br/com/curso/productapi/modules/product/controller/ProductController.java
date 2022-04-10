@@ -35,4 +35,14 @@ public class ProductController {
         return productService.findByName(name);
     }
 
+    @GetMapping("/category/{categoryId}")
+    public List<ProductResponse> findByCategoryId(@PathVariable Integer categoryId) {
+        return productService.findByCategoryId(categoryId);
+    }
+
+    @GetMapping("/supplier/{supplierId}")
+    public List<ProductResponse> findBySupplierId(@PathVariable Integer supplierId) {
+        return productService.findBySupplierId(supplierId);
+    }
+
 }
