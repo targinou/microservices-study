@@ -14,14 +14,14 @@ import static org.hibernate.internal.util.StringHelper.isEmpty;
 @Service
 public class JwtService {
 
-    private static final String BEARER = "bearer";
+    private static final String BEARER = "bearer ";
 
     @Value("${app-config.secrets.ap-secret")
     private String apiSecret;
 
     public void validateAuthorization(String token){
+        var accessToken = extractToken(token);
         try {
-            var accessToken = extractToken(token);
             var claims = Jwts
                     .parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(apiSecret.getBytes()))
